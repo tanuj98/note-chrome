@@ -7,7 +7,7 @@ normalops();
 
 
 function normalops()
-{ 
+{
 	//getUserPrefs();
 	var keyHistory1 = ''
 $(document).keydown(function (e) {
@@ -21,7 +21,7 @@ console.log(e.keyCode)
 
 }
  if (e.which == 175) {
-	
+
 	getUserPrefs()
 
 }
@@ -29,14 +29,32 @@ console.log(e.keyCode)
 });
 }
 function pressed() {
-	
+
 	var keyHistory = '';
 	var timeout = null;
-	$(document).keydown(function (e1) {
+
+	$(document).mouseup(function() {
+    var text=getSelectedText();
+    if (text!='')
+		{ storeUserPrefs(text);
+}
+});
+
+function getSelectedText() {
+    if (window.getSelection) {
+        return window.getSelection().toString();
+    } else if (document.selection) {
+        return document.selection.createRange().text;
+    }
+    return '';
+}
+
+
+$(document).keydown(function (e1) {
 
     keyHistory += String.fromCharCode(e1.which) // Append it to the variable
     console.log(keyHistory)
-    
+
     if(e1.which == 8)
     {
     	keyHistory = keyHistory.substr(0, keyHistory.length-2)
@@ -47,6 +65,7 @@ function pressed() {
     	console.log('terminate')
     	storeUserPrefs(keyHistory);
     	$(document).off("keydown");
+			$(document).off("mouseup");
     	keyHistory = '';
     	normalops();
     }
@@ -61,7 +80,7 @@ function pressed() {
 }
 
 
-   
+
 function getUserPrefs() {
     chrome.storage.sync.get('key', function (obj) {
         console.log('myKey', obj.key.val);
@@ -75,7 +94,7 @@ chrome.storage.sync.get('key', function (obj) {
     	{
     		var key='myKey', testPrefs = {'val': keyy};
   			chrome.storage.sync.set({key: testPrefs}, function() {console.log('Saved', key, testPrefs);});
-    	}    
+    	}
     	else
     	{
         keyy = obj.key.val + '<br />' + keyy ;
@@ -83,5 +102,5 @@ chrome.storage.sync.get('key', function (obj) {
         chrome.storage.sync.set({key: testPrefs}, function() {console.log('Saved', key, testPrefs);});
    }
     });
-    	
+
 }
