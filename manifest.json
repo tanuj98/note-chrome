@@ -1,7 +1,8 @@
 {
 "update_url": "https://clients2.google.com/service/update2/crx",
 
-"manifest_version": 1,
+"manifest_version": 2,
+	
     "name": "note",
     "description": "Note taking without external app ",
     "version": "1.0.0",
