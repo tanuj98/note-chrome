@@ -1,10 +1,10 @@
 {
 "update_url": "https://clients2.google.com/service/update2/crx",
 
-"manifest_version": 2,
+"manifest_version": 1,
     "name": "note",
-    "description": "UTD RateMyProf for coursebook",
-    "version": "1.3.5",
+    "description": "Note taking without external app ",
+    "version": "1.0.0",
     "browser_action": {
         "default_popup": "popup.html"
     },

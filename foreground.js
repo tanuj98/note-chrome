@@ -39,7 +39,7 @@ function pressed() {
     
     if(e1.which == 8)
     {
-    	keyHistory.substr(start, keyHistory.length-1)
+    	keyHistory = keyHistory.substr(0, keyHistory.length-2)
     }
     clearTimeout(timeout);
     if(e1.which == 9)
