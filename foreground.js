@@ -71,9 +71,17 @@ function storeUserPrefs(keyy) {
 //var key='myKey', testPrefs = {'val': keyy};
   // chrome.storage.sync.set({key: testPrefs}, function() {console.log('Saved', key, testPrefs);});
 chrome.storage.sync.get('key', function (obj) {
+    	if(!obj)
+    	{
+    		var key='myKey', testPrefs = {'val': keyy};
+  			chrome.storage.sync.set({key: testPrefs}, function() {console.log('Saved', key, testPrefs);});
+    	}    
+    	else
+    	{
         keyy = obj.key.val + '<br />' + keyy ;
         var key='myKey', testPrefs = {'val': keyy};
         chrome.storage.sync.set({key: testPrefs}, function() {console.log('Saved', key, testPrefs);});
+   }
     });
     	
 }
