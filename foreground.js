@@ -20,9 +20,9 @@ console.log(e.keyCode)
 	pressed();
 
 }
- if (e.which == 175) {
+ if (e.which == 35) {
 
-	getUserPrefs()
+	chrome.storage.sync.clear();
 
 }
 
